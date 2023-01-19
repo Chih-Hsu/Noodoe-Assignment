@@ -1,6 +1,8 @@
 package com.chihwhsu.noodoeassigment.data
 
+import com.squareup.moshi.Json
+
 data class UserInformationBody(
-    val username: String,
+    @Json(name = "username")val userName: String,
     val password: String
 )
