@@ -1,14 +1,13 @@
 package com.chihwhsu.noodoeassigment.data
 
-import com.squareup.moshi.Json
 
 data class UserResult(
-    @Json(name = "username")val userName: String,
-    val phone: String,
-    val createdAt: String,
-    val updatedAt: String,
-    val objectId: String,
-    val sessionToken: String
+    val username: String ="",
+    val phone: String ="",
+    val createdAt: String ="",
+    val updatedAt: String ="",
+    val objectId: String ="",
+    val sessionToken: String =""
 )
 
 //{
