@@ -7,18 +7,19 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.chihwhsu.noodoeassigment.data.Result
 import com.chihwhsu.noodoeassigment.data.UserInformationBody
+import com.chihwhsu.noodoeassigment.data.parking.ParkingLotsResult
 import com.chihwhsu.noodoeassigment.data.repository.Repository
+import com.chihwhsu.noodoeassigment.network.ParkingLotApi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class LoginViewModel(private val repository: Repository) : ViewModel() {
 
     private var _navigation = MutableLiveData<Boolean>().also { it.value = false }
-    val navigation : LiveData<Boolean> get() = _navigation
+    val navigation: LiveData<Boolean> get() = _navigation
 
     private var _error = MutableLiveData<String>()
-    val error : LiveData<String> get() = _error
-
+    val error: LiveData<String> get() = _error
 
 
     private var userName: String? = null
@@ -40,7 +41,7 @@ class LoginViewModel(private val repository: Repository) : ViewModel() {
 
             viewModelScope.launch(Dispatchers.Default) {
 
-                when(val result = repository.logIn(userInfo)){
+                when (val result = repository.logIn(userInfo)) {
 
                     is Result.Success -> {
                         _navigation.postValue(true)
@@ -50,7 +51,7 @@ class LoginViewModel(private val repository: Repository) : ViewModel() {
                         _error.postValue(result.exception.message)
                     }
 
-                    else ->{
+                    else -> {
 
                     }
                 }
@@ -58,11 +59,20 @@ class LoginViewModel(private val repository: Repository) : ViewModel() {
         }
     }
 
-    fun doneNavigation(){
+    fun doneNavigation() {
         _navigation.value = false
     }
 
     private fun isFormatCorrect(userName: String?, password: String?): Boolean {
         return userName != null && password != null
+    }
+
+    fun test() {
+        viewModelScope.launch(Dispatchers.IO) {
+//            val result: ParkingLotsResult = ParkingLotApi.retrofitService.getAllParkingLots()
+            val result = ParkingLotApi.retrofitService.getAvailableParkingLots()
+            Log.d("testt", "$result")
+        }
+
     }
 }

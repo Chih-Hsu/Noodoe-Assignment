@@ -45,6 +45,10 @@ class LoginFragment : Fragment() {
 
         }
 
+        binding.button2.setOnClickListener {
+            viewModel.test()
+        }
+
         return binding.root
     }
 }
