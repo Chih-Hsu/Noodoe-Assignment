@@ -38,6 +38,7 @@ class LoginFragment : Fragment() {
         viewModel.navigation.observe(viewLifecycleOwner) {
             if (it == true) {
                 findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToParkingLotsFragment())
+                viewModel.doneNavigation()
             }
         }
 
@@ -45,9 +46,6 @@ class LoginFragment : Fragment() {
 
         }
 
-        binding.button2.setOnClickListener {
-            viewModel.test()
-        }
 
         return binding.root
     }

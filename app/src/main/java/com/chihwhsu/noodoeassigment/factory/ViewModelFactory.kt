@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.chihwhsu.noodoeassigment.data.repository.DaggerRepositoryComponent
 import com.chihwhsu.noodoeassigment.data.repository.Repository
 import com.chihwhsu.noodoeassigment.login.LoginViewModel
+import com.chihwhsu.noodoeassigment.parkinglot.ParkingLotsViewModel
 import javax.inject.Inject
 
 class ViewModelFactory() : ViewModelProvider.Factory {
@@ -23,6 +24,9 @@ class ViewModelFactory() : ViewModelProvider.Factory {
 
                 isAssignableFrom(LoginViewModel::class.java)
                 -> LoginViewModel(repository)
+
+                isAssignableFrom(ParkingLotsViewModel::class.java)
+                -> ParkingLotsViewModel(repository)
 
                 else ->
                     throw IllegalArgumentException("Unknown ViewModel class: ${modelClass.name}")

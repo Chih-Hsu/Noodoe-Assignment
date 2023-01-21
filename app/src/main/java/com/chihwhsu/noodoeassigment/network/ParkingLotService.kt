@@ -38,7 +38,6 @@ interface ParkingLotService {
     @GET("TCMSV_allavailable.json")
     suspend fun getAvailableParkingLots(): AvailableResult
 
-
 }
 
 object ParkingLotApi {

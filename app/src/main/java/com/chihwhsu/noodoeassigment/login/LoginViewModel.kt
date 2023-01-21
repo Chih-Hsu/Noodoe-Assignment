@@ -67,12 +67,4 @@ class LoginViewModel(private val repository: Repository) : ViewModel() {
         return userName != null && password != null
     }
 
-    fun test() {
-        viewModelScope.launch(Dispatchers.IO) {
-//            val result: ParkingLotsResult = ParkingLotApi.retrofitService.getAllParkingLots()
-            val result = ParkingLotApi.retrofitService.getAvailableParkingLots()
-            Log.d("testt", "$result")
-        }
-
-    }
 }
