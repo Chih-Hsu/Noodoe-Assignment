@@ -1,7 +1,6 @@
 package com.chihwhsu.noodoeassigment.parkinglot
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,11 +8,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.chihwhsu.noodoeassigment.databinding.FragmentParkingLotsBinding
 import com.chihwhsu.noodoeassigment.ext.getViewModelFactory
-import com.chihwhsu.noodoeassigment.login.LoginViewModel
-import com.chihwhsu.noodoeassigment.network.ParkingLotApi
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 
 class ParkingLotsFragment : Fragment() {
 
@@ -24,16 +18,22 @@ class ParkingLotsFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val binding = FragmentParkingLotsBinding.inflate(inflater,container,false)
+        val binding = FragmentParkingLotsBinding.inflate(inflater, container, false)
 
         val adapter = ParkingLotAdapter()
         binding.recyclerviewParkingLots.adapter = adapter
 
-        viewModel.parkingLots.observe(viewLifecycleOwner){
+        viewModel.parkingLots.observe(viewLifecycleOwner) {
             adapter.submitList(it)
         }
 
-
+        viewModel.isLoading.observe(viewLifecycleOwner) {
+            if (it == true) {
+                binding.progressBar.visibility = View.VISIBLE
+            } else {
+                binding.progressBar.visibility = View.GONE
+            }
+        }
 
 
         return binding.root

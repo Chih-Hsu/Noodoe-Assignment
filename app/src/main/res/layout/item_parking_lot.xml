@@ -32,9 +32,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 tools:text="停車場"
+                android:maxLength="10"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="24dp"
-                android:textSize="24sp"
+                android:textSize="20sp"
+                android:textColor="@color/orange"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -54,6 +56,8 @@
                 android:layout_height="wrap_content"
                 app:layout_constraintStart_toStartOf="@+id/text_name"
                 app:layout_constraintTop_toBottomOf="@+id/text_name"
+                android:maxEms="13"
+                android:maxLines="2"
                 tools:text="地址" />
 
             <TextView
@@ -61,7 +65,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 tools:text="100 / 300"
-                android:textSize="36sp"
+                android:textSize="30sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 android:layout_marginStart="24dp"
@@ -78,7 +82,7 @@
                 android:id="@+id/text_charging"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="36sp"
+                android:textSize="30sp"
                 tools:text="1 | 5"
                 android:layout_marginEnd="24dp"
                 app:layout_constraintStart_toStartOf="@id/title_charging"

@@ -1,15 +1,12 @@
 package com.chihwhsu.noodoeassigment.login
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.chihwhsu.noodoeassigment.data.Result
 import com.chihwhsu.noodoeassigment.data.UserInformationBody
-import com.chihwhsu.noodoeassigment.data.parking.ParkingLotsResult
 import com.chihwhsu.noodoeassigment.data.repository.Repository
-import com.chihwhsu.noodoeassigment.network.ParkingLotApi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 

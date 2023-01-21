@@ -10,9 +10,10 @@ import com.chihwhsu.noodoeassigment.R
 import com.chihwhsu.noodoeassigment.data.DisplayParkingLots
 import com.chihwhsu.noodoeassigment.databinding.ItemParkingLotBinding
 
-class ParkingLotAdapter : ListAdapter<DisplayParkingLots,ParkingLotAdapter.ParkingLotViewHolder>(ParkingLotDiffUtil()) {
+class ParkingLotAdapter :
+    ListAdapter<DisplayParkingLots, ParkingLotAdapter.ParkingLotViewHolder>(ParkingLotDiffUtil()) {
 
-    class ParkingLotDiffUtil : DiffUtil.ItemCallback<DisplayParkingLots>(){
+    class ParkingLotDiffUtil : DiffUtil.ItemCallback<DisplayParkingLots>() {
         override fun areItemsTheSame(
             oldItem: DisplayParkingLots,
             newItem: DisplayParkingLots
@@ -28,21 +29,31 @@ class ParkingLotAdapter : ListAdapter<DisplayParkingLots,ParkingLotAdapter.Parki
         }
     }
 
-    class ParkingLotViewHolder(private val binding: ItemParkingLotBinding) : RecyclerView.ViewHolder(binding.root){
+    class ParkingLotViewHolder(private val binding: ItemParkingLotBinding) :
+        RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(item:DisplayParkingLots){
+        fun bind(item: DisplayParkingLots) {
             binding.apply {
                 textId.text = item.id
                 textName.text = item.name
                 textAddress.text = item.address
-                textAvailableTotal.text = itemView.context.getString(R.string.available_total,item.availableCar,item.totalCar)
+                textAvailableTotal.text = itemView.context.getString(
+                    R.string.available_total,
+                    item.availableCar,
+                    item.totalCar
+                )
+                textCharging.text = itemView.context.getString(
+                    R.string.standby_charging,
+                    item.standby ?: 0,
+                    item.charging ?: 0
+                )
             }
 
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ParkingLotViewHolder {
-        val view = ItemParkingLotBinding.inflate(LayoutInflater.from(parent.context),parent,false)
+        val view = ItemParkingLotBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ParkingLotViewHolder(view)
     }
 
