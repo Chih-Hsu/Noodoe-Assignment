@@ -1,9 +1,6 @@
 package com.chihwhsu.noodoeassigment.data.remote
 
-import com.chihwhsu.noodoeassigment.data.DisplayParkingLots
-import com.chihwhsu.noodoeassigment.data.Result
-import com.chihwhsu.noodoeassigment.data.UserInformationBody
-import com.chihwhsu.noodoeassigment.data.UserResult
+import com.chihwhsu.noodoeassigment.data.*
 import com.chihwhsu.noodoeassigment.data.parking.AvailablePark
 import com.chihwhsu.noodoeassigment.data.parking.Park
 import com.chihwhsu.noodoeassigment.data.repository.DataSource
@@ -16,11 +13,11 @@ import kotlinx.coroutines.Dispatchers
 
 class RemoteDataSource : DataSource {
 
-    override suspend fun logIn(userInfo: UserInformationBody): Result<UserResult> {
+    override suspend fun logIn(userInfo: UserInformationBody): Result<User> {
 
         return try {
-            val userResult = NoodoeApi.retrofitService.logIn(APPLICATION_ID, userInfo)
-            Result.Success(userResult)
+            val user = NoodoeApi.retrofitService.logIn(APPLICATION_ID, userInfo)
+            Result.Success(user)
         } catch (e: Exception) {
             Result.Error(e)
         }

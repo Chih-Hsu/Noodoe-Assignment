@@ -6,6 +6,7 @@ import com.chihwhsu.noodoeassigment.data.repository.DaggerRepositoryComponent
 import com.chihwhsu.noodoeassigment.data.repository.Repository
 import com.chihwhsu.noodoeassigment.login.LoginViewModel
 import com.chihwhsu.noodoeassigment.parkinglot.ParkingLotsViewModel
+import com.chihwhsu.noodoeassigment.timezone.TimeZoneViewModel
 import javax.inject.Inject
 
 class ViewModelFactory() : ViewModelProvider.Factory {
@@ -27,6 +28,9 @@ class ViewModelFactory() : ViewModelProvider.Factory {
 
                 isAssignableFrom(ParkingLotsViewModel::class.java)
                 -> ParkingLotsViewModel(repository)
+
+                isAssignableFrom(TimeZoneViewModel::class.java)
+                -> TimeZoneViewModel(repository)
 
                 else ->
                     throw IllegalArgumentException("Unknown ViewModel class: ${modelClass.name}")

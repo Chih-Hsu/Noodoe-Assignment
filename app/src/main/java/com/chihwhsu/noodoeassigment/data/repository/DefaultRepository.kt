@@ -1,9 +1,6 @@
 package com.chihwhsu.noodoeassigment.data.repository
 
-import com.chihwhsu.noodoeassigment.data.DisplayParkingLots
-import com.chihwhsu.noodoeassigment.data.Result
-import com.chihwhsu.noodoeassigment.data.UserInformationBody
-import com.chihwhsu.noodoeassigment.data.UserResult
+import com.chihwhsu.noodoeassigment.data.*
 import com.chihwhsu.noodoeassigment.data.parking.ParkingLotsResult
 
 
@@ -11,7 +8,7 @@ class DefaultRepository(
     private val remoteDataSource: DataSource
 ) : Repository {
 
-    override suspend fun logIn(userInfo: UserInformationBody): Result<UserResult> {
+    override suspend fun logIn(userInfo: UserInformationBody): Result<User> {
         return remoteDataSource.logIn(userInfo)
     }
 

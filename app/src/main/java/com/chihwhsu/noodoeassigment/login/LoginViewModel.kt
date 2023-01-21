@@ -1,9 +1,11 @@
 package com.chihwhsu.noodoeassigment.login
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.chihwhsu.noodoeassigment.UserManager
 import com.chihwhsu.noodoeassigment.data.Result
 import com.chihwhsu.noodoeassigment.data.UserInformationBody
 import com.chihwhsu.noodoeassigment.data.repository.Repository
@@ -41,6 +43,7 @@ class LoginViewModel(private val repository: Repository) : ViewModel() {
                 when (val result = repository.logIn(userInfo)) {
 
                     is Result.Success -> {
+                        UserManager.user = result.data
                         _navigation.postValue(true)
                     }
 

@@ -1,13 +1,10 @@
 package com.chihwhsu.noodoeassigment.data.repository
 
-import com.chihwhsu.noodoeassigment.data.DisplayParkingLots
-import com.chihwhsu.noodoeassigment.data.Result
-import com.chihwhsu.noodoeassigment.data.UserInformationBody
-import com.chihwhsu.noodoeassigment.data.UserResult
+import com.chihwhsu.noodoeassigment.data.*
 
 interface DataSource {
 
-    suspend fun logIn(userInfo: UserInformationBody): Result<UserResult>
+    suspend fun logIn(userInfo: UserInformationBody): Result<User>
 
     suspend fun getAllParkingLots(): Result<List<DisplayParkingLots>>
 }

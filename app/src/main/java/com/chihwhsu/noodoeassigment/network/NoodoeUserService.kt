@@ -1,7 +1,7 @@
 package com.chihwhsu.noodoeassigment.network
 
+import com.chihwhsu.noodoeassigment.data.User
 import com.chihwhsu.noodoeassigment.data.UserInformationBody
-import com.chihwhsu.noodoeassigment.data.UserResult
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import okhttp3.OkHttpClient
@@ -36,7 +36,7 @@ interface NoodoeService {
     suspend fun logIn(
         @Header("X-Parse-Application-Id") applicationId: String,
         @Body userInformation: UserInformationBody
-    ): UserResult
+    ): User
 }
 
 object NoodoeApi {

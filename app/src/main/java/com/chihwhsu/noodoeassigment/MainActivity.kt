@@ -20,7 +20,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         setToolBar()
-
     }
 
     private fun setToolBar() {
@@ -64,7 +63,6 @@ class MainActivity : AppCompatActivity() {
                     binding.toolBar.navigationIcon = null
                     showMenu = true
                     invalidateOptionsMenu()
-
                 }
 
                 R.id.timeZoneFragment -> {
@@ -72,7 +70,6 @@ class MainActivity : AppCompatActivity() {
                         getDrawable(R.drawable.ic_baseline_arrow_back_ios_24)
                     showMenu = false
                     invalidateOptionsMenu()
-
                 }
             }
         }
