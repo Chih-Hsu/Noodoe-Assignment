@@ -36,6 +36,7 @@ class ParkingLotsFragment : Fragment() {
         }
 
 
+
         return binding.root
     }
 }

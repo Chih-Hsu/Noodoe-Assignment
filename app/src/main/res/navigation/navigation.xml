@@ -15,17 +15,9 @@
     <fragment
         android:id="@+id/parkingLotsFragment"
         android:name="com.chihwhsu.noodoeassigment.parkinglot.ParkingLotsFragment"
-        android:label="ParkingLotsFragment" >
-        <action
-            android:id="@+id/action_parkingLotsFragment_to_timeZoneFragment"
-            app:destination="@id/timeZoneFragment" />
-    </fragment>
+        android:label="ParkingLotsFragment" />
     <fragment
         android:id="@+id/timeZoneFragment"
         android:name="com.chihwhsu.noodoeassigment.timezone.TimeZoneFragment"
-        android:label="TimeZoneFragment" >
-        <action
-            android:id="@+id/action_timeZoneFragment_to_parkingLotsFragment"
-            app:destination="@id/parkingLotsFragment" />
-    </fragment>
+        android:label="TimeZoneFragment" /><action android:id="@+id/action_global_timeZoneFragment" app:destination="@id/timeZoneFragment"/>
 </navigation>
