@@ -1,6 +1,6 @@
 package com.chihwhsu.noodoeassigment.login
 
-import android.util.Log
+import android.util.Patterns
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -20,6 +20,8 @@ class LoginViewModel(private val repository: Repository) : ViewModel() {
     private var _error = MutableLiveData<String>()
     val error: LiveData<String> get() = _error
 
+    private var _isLoading = MutableLiveData<Boolean>()
+    val isLoading: LiveData<Boolean> get() = _isLoading
 
     private var userName: String? = null
     private var password: String? = null
@@ -32,28 +34,39 @@ class LoginViewModel(private val repository: Repository) : ViewModel() {
         password = passwordInput
     }
 
+    fun isEmailFormatCorrect(): Boolean {
+        return !userName.isNullOrEmpty() &&
+                Patterns.EMAIL_ADDRESS.matcher(userName).matches()
+    }
+
+    fun isPasswordFormatCorrect(): Boolean {
+        return !password.isNullOrEmpty()
+    }
 
     fun logIn() {
 
-        if (isFormatCorrect(userName, password)) {
-            val userInfo = UserInformationBody(userName!!, password!!)
+        _isLoading.value = true
 
-            viewModelScope.launch(Dispatchers.Default) {
+        // Already check userName and password are not null
+        val userInfo = UserInformationBody(userName!!, password!!)
 
-                when (val result = repository.logIn(userInfo)) {
+        viewModelScope.launch(Dispatchers.Default) {
 
-                    is Result.Success -> {
-                        UserManager.user = result.data
-                        _navigation.postValue(true)
-                    }
+            when (val result = repository.logIn(userInfo)) {
 
-                    is Result.Error -> {
-                        _error.postValue(result.exception.message)
-                    }
+                is Result.Success -> {
+                    UserManager.user = result.data
+                    _isLoading.postValue(false)
+                    _navigation.postValue(true)
+                }
 
-                    else -> {
+                is Result.Error -> {
+                    _isLoading.postValue(false)
+                    _error.postValue(result.exception.message)
+                }
 
-                    }
+                else -> {
+                    _isLoading.postValue(false)
                 }
             }
         }
@@ -61,10 +74,6 @@ class LoginViewModel(private val repository: Repository) : ViewModel() {
 
     fun doneNavigation() {
         _navigation.value = false
-    }
-
-    private fun isFormatCorrect(userName: String?, password: String?): Boolean {
-        return userName != null && password != null
     }
 
 }

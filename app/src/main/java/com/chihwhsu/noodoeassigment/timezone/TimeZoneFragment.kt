@@ -9,10 +9,8 @@ import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import com.chihwhsu.noodoeassigment.R
 import com.chihwhsu.noodoeassigment.databinding.FragmentTimezoneBinding
 import com.chihwhsu.noodoeassigment.ext.getViewModelFactory
-import com.chihwhsu.noodoeassigment.parkinglot.ParkingLotsViewModel
 import java.util.*
 
 class TimeZoneFragment : Fragment() {
@@ -32,8 +30,6 @@ class TimeZoneFragment : Fragment() {
         viewModel.user.observe(viewLifecycleOwner){
             binding.textUserEmail.text = it?.name
         }
-
-
 
         return binding.root
     }

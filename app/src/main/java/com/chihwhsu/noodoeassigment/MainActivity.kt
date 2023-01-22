@@ -61,6 +61,8 @@ class MainActivity : AppCompatActivity() {
 
                 R.id.parkingLotsFragment -> {
                     binding.toolBar.navigationIcon = null
+                    supportActionBar?.title = "台北市停車場資訊"
+
                     showMenu = true
                     invalidateOptionsMenu()
                 }
@@ -68,6 +70,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.timeZoneFragment -> {
                     binding.toolBar.navigationIcon =
                         getDrawable(R.drawable.ic_baseline_arrow_back_ios_24)
+                    supportActionBar?.title = "Time Zone"
                     showMenu = false
                     invalidateOptionsMenu()
                 }
